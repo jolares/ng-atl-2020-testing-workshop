@@ -1,12 +1,11 @@
 import { Component } from "@angular/core";
 import { DinosaurProfileService } from "./services/dinosaur-profile.service";
 import { Observable } from "rxjs";
-import { stringify } from "@angular/compiler/src/util";
 
 // TODO
 // DOM test for success
 // DOM test for pending
-// DOM test for error 
+// DOM test for error
 @Component({
   selector: "app-root",
   template: `
@@ -33,7 +32,7 @@ import { stringify } from "@angular/compiler/src/util";
 export class AppComponent {
   profileDetails$: Observable<any>;
 
-  constructor(private readonly dinosaurProfileService: DinosaurProfileService) {
-    this.profileDetails$ = this.dinosaurProfileService.getProfileDetails("123");
+  constructor(dinosaurProfileService: DinosaurProfileService) {
+    this.profileDetails$ = dinosaurProfileService.getProfileDetails("123");
   }
 }

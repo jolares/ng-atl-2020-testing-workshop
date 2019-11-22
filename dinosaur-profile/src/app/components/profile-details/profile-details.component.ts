@@ -28,7 +28,7 @@ import {
           </ul>
         </div>
         <div class="biography-container">
-          <button>View Biography</button>
+          <app-biography-details></app-biography-details>
         </div>
       </div>
     </div>
