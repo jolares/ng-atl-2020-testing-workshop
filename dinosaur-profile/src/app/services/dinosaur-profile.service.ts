@@ -12,6 +12,10 @@ const MOCK_PROFILE_DETAILS = {
   favoriteFood: ["Edmontosaurus", "Anatosaurus", "Triceratops"]
 };
 
+const MOCK_BIOGRAPHY = {
+  bio: `I am one of the largest land carnivores of all time. I like to eat fellow dinosaurs, so I'm not very friendly. In my spare time, I like to practice touching my toes. Looking for someone that can scratch my back.`
+};
+
 @Injectable({
   providedIn: "root"
 })
@@ -19,12 +23,26 @@ export class DinosaurProfileService {
   constructor(private readonly http: HttpClient) {}
 
   getProfileDetails(id: string) {
-    return this.http.get(`/${id}/profile-details`).pipe(
-      map(profileDetails => ({ value: profileDetails, status: "SUCCESS" })),
+    return this.http.get(`/${id}/profile/details`).pipe(
+      map(value => ({ value, status: "SUCCESS" })),
       catchError(() =>
         observableOf({
           // status: "ERROR"
           value: MOCK_PROFILE_DETAILS,
+          status: "SUCCESS"
+        })
+      ),
+      startWith({ status: "PENDING" })
+    );
+  }
+
+  getBiography(id: string) {
+    return this.http.get(`/${id}/profile/biography`).pipe(
+      map(value => ({ value, status: "SUCCESS" })),
+      catchError(() =>
+        observableOf({
+          // status: "ERROR"
+          value: MOCK_BIOGRAPHY.bio,
           status: "SUCCESS"
         })
       ),
