@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { catchError, delay } from "rxjs/operators";
+import { catchError, delay, map, startWith } from "rxjs/operators";
 import { of as observableOf } from "rxjs";
 
 const MOCK_PROFILE_DETAILS = {
@@ -19,8 +19,16 @@ export class DinosaurProfileService {
   constructor(private readonly http: HttpClient) {}
 
   getProfileDetails(id: string) {
-    return this.http
-      .get(`/${id}/profile-details`)
-      .pipe(delay(10000), catchError(err => observableOf(MOCK_PROFILE_DETAILS)));
+    return this.http.get(`/${id}/profile-details`).pipe(
+      map(profileDetails => ({ value: profileDetails, status: "SUCCESS" })),
+      catchError(() =>
+        observableOf({
+          // status: "ERROR"
+          value: MOCK_PROFILE_DETAILS,
+          status: "SUCCESS"
+        })
+      ),
+      startWith({ status: "PENDING" })
+    );
   }
 }
