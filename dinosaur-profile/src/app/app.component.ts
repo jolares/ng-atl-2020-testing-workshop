@@ -1,38 +1,48 @@
-import { Component } from "@angular/core";
+import { Component, OnChanges } from "@angular/core";
 import { DinosaurProfileService } from "./services/dinosaur-profile.service";
 import { Observable } from "rxjs";
 
 // TODO
-// DOM test for success
-// DOM test for pending
-// DOM test for error
+// Class test
+// DOM Test
 @Component({
   selector: "app-root",
   template: `
-    <div
-      class="container"
-      *ngIf="profileDetails$ | async as profileDetails"
-      [ngSwitch]="profileDetails.status"
-    >
-      <ng-template ngSwitchCase="SUCCESS">
-        <app-profile-details
-          [profileDetails]="profileDetails?.value"
-        ></app-profile-details>
-      </ng-template>
-      <ng-template ngSwitchCase="PENDING">
-        <div class="spinner"></div>
-      </ng-template>
-      <ng-template ngSwitchCase="ERROR">
-        <h1>No dinosaur profile details found.</h1>
-      </ng-template>
+    <div class="container">
+      <app-menu (clicked)="display($event)"></app-menu>
+      <ng-container *ngIf="selectedDino">
+        <app-cases
+          *ngIf="profileDetails$ | async as profileDetails"
+          [contentStatus]="profileDetails.status"
+        >
+          <app-profile-details
+            success-case
+            [profileDetails]="profileDetails?.value"
+          ></app-profile-details>
+          <h1 error-case>No dinosaur profile details found.</h1>
+          <div pending-case class="spinner"></div>
+        </app-cases>
+      </ng-container>
     </div>
   `,
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
   profileDetails$: Observable<any>;
+  selectedDino = "t-rex";
 
-  constructor(dinosaurProfileService: DinosaurProfileService) {
-    this.profileDetails$ = dinosaurProfileService.getProfileDetails("123");
+  constructor(private readonly dinosaurProfileService: DinosaurProfileService) {
+    this.getProfileDetails();
+  }
+
+  display(event) {
+    this.selectedDino = event;
+    this.getProfileDetails();
+  }
+
+  getProfileDetails() {
+    this.profileDetails$ = this.dinosaurProfileService.getProfileDetails(
+      this.selectedDino
+    );
   }
 }
