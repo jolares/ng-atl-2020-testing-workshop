@@ -25,7 +25,7 @@ export class DinosoursController {
 			pictureUrl: 'https://upload.wikimedia.org/wikipedia/commons/9/94/Tyrannosaurus_Rex_Holotype.jpg',
 			favoriteFood: ['Smaller Dinosours', 'Chicago Style Pizza (Meat-lover)'],
 			hideRealName: false,
-			bio: 'People tend to be scared of me, but I describe myself as a loving being. and can be very emotional at times. Seeking someone that can help me scratch my back'		
+			bio: `I am one of the largest land carnivores of all time. I like to eat fellow dinosaurs, so I'm not very friendly. In my spare time, I like to practice touching my toes. Looking for someone that can scratch my back.`
 		},
 		456: { 
 			id: 456,
@@ -34,7 +34,7 @@ export class DinosoursController {
 			pictureUrl: 'someUrl',
 			favoriteFood: ['Zucchini spaghetti', 'Baked Kale'],
 			hideRealName: false,
-			bio: 'Only vegans or swipe left Plzzz. Add my Insta @TriciaRatops',
+			bio: 'Only cool vegans or swipe left Plzzz. Oh btw add my Insta @TriciaRatops.',
 		},
 		789: { 
 			id: '789',
@@ -43,16 +43,25 @@ export class DinosoursController {
 			pictureUrl: 'someUrl',
 			favoriteFood: ['Pterosaurs', 'Seafood in general'],
 			hideRealName: false,
-			bio: 'Strong sense of family. Love fishing. Only here to make friends.'		
+			bio: `New to the online thing. Strong sense of family. Love fishing. Only here to make friends.`	
 		},
 		101: {
 			id: '101',
-			name: 'Dippy Highfruitpacker',
+			name: 'Dippy Longneckerberger',
 			type: 'Diplodocus',
 			pictureUrl: 'someUrl',
 			favoriteFood: ['Pterosaurs', 'Seafood in general'],
 			hideRealName: true,
-			bio: 'Strong sense of family. Love fishing. Only here to make friends.'	
+			bio: `I love to pick high hanging fruits.`	
+		},
+		202: {
+			id: '101',
+			name: 'Dippy Longneckerberger',
+			type: 'Diplodocus',
+			pictureUrl: 'someUrl',
+			favoriteFood: ['Pterosaurs', 'Seafood in general'],
+			hideRealName: true,
+			bio: `Actor, Jurasic Park I, II, and Jurasic World.`	
 		}
 	};
 
