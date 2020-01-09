@@ -23,10 +23,11 @@ const MOCK_BIOGRAPHY = {
   providedIn: "root"
 })
 export class DinosaurProfileService {
+  private readonly baseUrl = 'dinosaurs';
   constructor(private readonly http: HttpClient) {}
 
   getProfileDetails(id: string) {
-    return this.http.get(`/${id}/profile/details`).pipe(
+    return this.http.get(`${this.baseUrl}/${id}/profile`).pipe(
       map(value => ({ value, status: "SUCCESS" })),
       catchError(() =>
         observableOf({
@@ -40,7 +41,7 @@ export class DinosaurProfileService {
   }
 
   getBiography(id: string) {
-    return this.http.get(`/${id}/profile/biography`).pipe(
+    return this.http.get(`${this.baseUrl}/${id}/bio`).pipe(
       map(value => ({ value, status: "SUCCESS" })),
       catchError(() =>
         observableOf({

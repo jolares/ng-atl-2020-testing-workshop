@@ -1,12 +1,12 @@
-import { Component, OnChanges } from "@angular/core";
-import { DinosaurProfileService } from "./services/dinosaur-profile.service";
-import { Observable } from "rxjs";
+import { Component, OnChanges } from '@angular/core';
+import { DinosaurProfileService } from './services/dinosaur-profile.service';
+import { Observable } from 'rxjs';
 
 // TODO
 // Class test
 // DOM Test
 @Component({
-  selector: "app-root",
+  selector: 'app-root',
   template: `
     <div class="container">
       <app-menu (clicked)="display($event)"></app-menu>
@@ -25,11 +25,11 @@ import { Observable } from "rxjs";
       </ng-container>
     </div>
   `,
-  styleUrls: ["./app.component.scss"]
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   profileDetails$: Observable<any>;
-  selectedDino = "t-rex";
+  selectedDino = '123';
 
   constructor(private readonly dinosaurProfileService: DinosaurProfileService) {
     this.getProfileDetails();
